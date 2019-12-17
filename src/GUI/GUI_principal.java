@@ -1,7 +1,9 @@
 package GUI;
 
-import clases.Agente_I;
+import agentes.Agente_I;
+import clases.RecursosAprendizaje;
 import jade.gui.GuiEvent;
+import java.util.ArrayList;
 
 /**
  * @author jh3ys0n
@@ -31,6 +33,13 @@ public class GUI_principal extends javax.swing.JFrame {
         }
     }
 
+    public void presentarResultados(ArrayList<RecursosAprendizaje> lista) {
+        this.txtAreaResultados.setText("");
+        lista.forEach((actual) -> {
+            this.txtAreaResultados.append(actual.toString());
+        });
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,6 +48,8 @@ public class GUI_principal extends javax.swing.JFrame {
         txtBusqueda = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         lblError = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAreaResultados = new javax.swing.JTextArea();
         lblFondoImg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,7 +61,7 @@ public class GUI_principal extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 70));
 
         txtBusqueda.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
-        getContentPane().add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 530, 40));
+        getContentPane().add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 530, 40));
 
         btnBuscar.setFont(new java.awt.Font("Open Sans", 1, 18)); // NOI18N
         btnBuscar.setText("Buscar");
@@ -60,11 +71,17 @@ public class GUI_principal extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 100, 40));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 100, 40));
 
         lblError.setForeground(new java.awt.Color(255, 0, 0));
         lblError.setText("Mensaje de texto vacio a buscar");
-        getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 145, -1, -1));
+        getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+
+        txtAreaResultados.setColumns(20);
+        txtAreaResultados.setRows(5);
+        jScrollPane1.setViewportView(txtAreaResultados);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 770, 300));
         getContentPane().add(lblFondoImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 460));
 
         pack();
@@ -109,8 +126,10 @@ public class GUI_principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblFondoImg;
+    private javax.swing.JTextArea txtAreaResultados;
     private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
 }

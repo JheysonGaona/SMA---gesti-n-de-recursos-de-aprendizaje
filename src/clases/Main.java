@@ -7,8 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String[] argsAgent = {"-gui", "Agente-I:clases.Agente_I; Agente-B:clases.Agente_B"};
+        String[] argsAgent = {"-gui", "Agente-I:agentes.Agente_I; Agente-B:agentes.Agente_B; Agente-RS:agentes.Agente_RS"};
         jade.Boot.main(argsAgent);
     }
-
 }
