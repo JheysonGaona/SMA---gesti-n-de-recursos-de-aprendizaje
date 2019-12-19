@@ -3,7 +3,9 @@ package GUI;
 import agentes.Agente_I;
 import clases.RecursosAprendizaje;
 import jade.gui.GuiEvent;
+import java.awt.Font;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 
 /**
  * @author jh3ys0n
@@ -18,7 +20,22 @@ public class GUI_principal extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        css();
+    }
+
+    private void css() {
         this.lblError.setText("");
+        //padding del textArea
+        txtAreaResultados.setBorder(BorderFactory.createCompoundBorder(
+                txtAreaResultados.getBorder(),
+                BorderFactory.createEmptyBorder(15, 15, 15, 15)));
+        //padding del input
+        txtBusqueda.setBorder(BorderFactory.createCompoundBorder(
+                txtBusqueda.getBorder(),
+                BorderFactory.createEmptyBorder(0, 10, 0, 10)));
+
+        Font font = new Font("Verdana", Font.PLAIN, 12);
+        txtAreaResultados.setFont(font);
     }
 
     private void buscar() {
@@ -38,6 +55,11 @@ public class GUI_principal extends javax.swing.JFrame {
         lista.forEach((actual) -> {
             this.txtAreaResultados.append(actual.toString());
         });
+    }
+
+    public void sinResultados(String msm) {
+        this.txtAreaResultados.setText("");
+        this.txtAreaResultados.setText(msm);
     }
 
     @SuppressWarnings("unchecked")
@@ -61,7 +83,7 @@ public class GUI_principal extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 70));
 
         txtBusqueda.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
-        getContentPane().add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 530, 40));
+        getContentPane().add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 660, 40));
 
         btnBuscar.setFont(new java.awt.Font("Open Sans", 1, 18)); // NOI18N
         btnBuscar.setText("Buscar");
@@ -71,13 +93,14 @@ public class GUI_principal extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 100, 40));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 100, 40));
 
         lblError.setForeground(new java.awt.Color(255, 0, 0));
         lblError.setText("Mensaje de texto vacio a buscar");
         getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         txtAreaResultados.setColumns(20);
+        txtAreaResultados.setLineWrap(true);
         txtAreaResultados.setRows(5);
         jScrollPane1.setViewportView(txtAreaResultados);
 

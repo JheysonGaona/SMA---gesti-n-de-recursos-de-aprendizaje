@@ -1,6 +1,10 @@
 package clases;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * @author jh3ys0n
@@ -12,6 +16,7 @@ public class RecursosAprendizaje implements Serializable{
     private String detalle_recurso;
     private String enlace_recurso;
     private String categoria;
+    private LeerRepositoriaRA repositorio;
 
     public RecursosAprendizaje() {
     }
@@ -65,10 +70,29 @@ public class RecursosAprendizaje implements Serializable{
         this.categoria = categoria;
     }
     
+    public String sinResultados(String ruta) {
+        String datos = "";
+        try {
+            ObjectInputStream read = new ObjectInputStream(new FileInputStream(ruta));
+            datos = (String) read.readObject();
+            read.close();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
+        return datos;
+    }
+    
+    public ArrayList<String> buscarRA(String recursoAprendizaje){
+        repositorio = new LeerRepositoriaRA();
+        repositorio.abrirArchivo("Repositorio de RA.txt");
+        ArrayList<String> lista = repositorio.leer_informacion(recursoAprendizaje);
+        repositorio.cerrarArchivo();
+        return lista;
+    }
     
     @Override
     public String toString(){
-        return String.format("%s\n%s\n%s\n\n", getTitulo_recurso(),
+        return String.format("%s\n%s\n%s\nTipo de recurso: %s\n\n", getTitulo_recurso(),
                 getEnlace_recurso(), getDetalle_recurso(), getCategoria());
     }
     
