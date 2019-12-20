@@ -29,6 +29,9 @@ public class RecursosAprendizaje implements Serializable{
         this.enlace_recurso = enlace_recurso;
         this.categoria = categoria;
     }
+    public RecursosAprendizaje(String titulo_recurso) {
+        this.titulo_recurso = titulo_recurso;
+    }
 
     public int getId_recurso() {
         return id_recurso;

@@ -15,7 +15,7 @@ public class DATConexion {
     public Connection getConnection() throws ClassNotFoundException, SQLException {
         String driver = "com.mysql.jdbc.Driver";
         String user = "root";
-        String password = "1626";
+        String password = "";
         String url = "jdbc:mysql://localhost:3306/Recursos_Aprendizaje";
         Class.forName(driver);//Diver jdbc para trabajr conexion access
         conexion = DriverManager.getConnection(url, user, password);

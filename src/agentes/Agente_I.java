@@ -31,8 +31,18 @@ public class Agente_I extends GuiAgent {
                     try {
                         ArrayList<RecursosAprendizaje> lista
                                 = (ArrayList<RecursosAprendizaje>) aclMessage.getContentObject();
+                        ArrayList<RecursosAprendizaje> listaLectura = new ArrayList<>();
+                        ArrayList<RecursosAprendizaje> listaVideo = new ArrayList<>();
                         if (lista.size() > 0) {
-                            gui.presentarResultados(lista);
+                            for (RecursosAprendizaje lista1 : lista) {
+                                if(lista1.getCategoria().equalsIgnoreCase("Lectura")){
+                                    listaLectura.add(lista1);
+                                }else{
+                                    listaVideo.add(lista1);
+                                }
+                            }
+                            gui.presentarResultados(listaLectura);
+                            gui.presentarResultadosVideo(listaVideo);
                         } else {
                             String msm = ra.sinResultados("Sin Resultados.txt").replace("%s", txtBusqueda);
                             gui.sinResultados(msm);

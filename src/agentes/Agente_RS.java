@@ -30,7 +30,7 @@ public class Agente_RS extends Agent {
                 ACLMessage aclMessage = receive();
                 if (aclMessage != null) {
                     mensaje = aclMessage.getContent();
-                    System.out.println(getLocalName() + ": acada de recibir el siguiente mensaje " + mensaje);
+                    System.out.println(getLocalName() + ": acaba de recibir el siguiente mensaje " + mensaje);
                     try {
                         lista = objRA.consultarRA(mensaje);
                         aclMessage = new ACLMessage(ACLMessage.INFORM);

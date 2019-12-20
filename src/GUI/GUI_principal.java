@@ -13,7 +13,6 @@ import javax.swing.BorderFactory;
 public class GUI_principal extends javax.swing.JFrame {
 
     private Agente_I agente;
-
     public GUI_principal(Agente_I agent) {
         super(agent.getLocalName());
         agente = agent;
@@ -26,8 +25,11 @@ public class GUI_principal extends javax.swing.JFrame {
     private void css() {
         this.lblError.setText("");
         //padding del textArea
-        txtAreaResultados.setBorder(BorderFactory.createCompoundBorder(
-                txtAreaResultados.getBorder(),
+        txtAreaLectura.setBorder(BorderFactory.createCompoundBorder(
+                txtAreaLectura.getBorder(),
+                BorderFactory.createEmptyBorder(15, 15, 15, 15)));
+        txtAreaVideo.setBorder(BorderFactory.createCompoundBorder(
+                txtAreaVideo.getBorder(),
                 BorderFactory.createEmptyBorder(15, 15, 15, 15)));
         //padding del input
         txtBusqueda.setBorder(BorderFactory.createCompoundBorder(
@@ -35,7 +37,8 @@ public class GUI_principal extends javax.swing.JFrame {
                 BorderFactory.createEmptyBorder(0, 10, 0, 10)));
 
         Font font = new Font("Verdana", Font.PLAIN, 12);
-        txtAreaResultados.setFont(font);
+        txtAreaLectura.setFont(font);
+        txtAreaVideo.setFont(font);
     }
 
     private void buscar() {
@@ -51,15 +54,28 @@ public class GUI_principal extends javax.swing.JFrame {
     }
 
     public void presentarResultados(ArrayList<RecursosAprendizaje> lista) {
-        this.txtAreaResultados.setText("");
+      //  this.txtAreaResultados.setText("");
+        this.txtAreaLectura.setText("");
         lista.forEach((actual) -> {
-            this.txtAreaResultados.append(actual.toString());
+           // this.txtAreaResultados.append(actual.toString());
+            this.txtAreaLectura.append(actual.toString());
+        });
+    }
+    
+    public void presentarResultadosVideo(ArrayList<RecursosAprendizaje> lista) {
+      //  this.txtAreaResultados.setText("");
+        this.txtAreaVideo.setText("");
+        lista.forEach((actual) -> {
+           // this.txtAreaResultados.append(actual.toString());
+            this.txtAreaVideo.append(actual.toString());
         });
     }
 
     public void sinResultados(String msm) {
-        this.txtAreaResultados.setText("");
-        this.txtAreaResultados.setText(msm);
+        this.txtAreaLectura.setText("");
+        this.txtAreaLectura.setText(msm);
+        this.txtAreaVideo.setText("");
+        this.txtAreaVideo.setText(msm);
     }
 
     @SuppressWarnings("unchecked")
@@ -70,14 +86,19 @@ public class GUI_principal extends javax.swing.JFrame {
         txtBusqueda = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         lblError = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaResultados = new javax.swing.JTextArea();
-        lblFondoImg = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAreaLectura = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtAreaVideo = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("PlainBlack", 0, 35)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("PlainBlack", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sistema Multiagente de Gestion de Recursos de Aprendizaje");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 70));
@@ -85,27 +106,44 @@ public class GUI_principal extends javax.swing.JFrame {
         txtBusqueda.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
         getContentPane().add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 660, 40));
 
+        btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscar.setFont(new java.awt.Font("Open Sans", 1, 18)); // NOI18N
-        btnBuscar.setText("Buscar");
-        btnBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon.png"))); // NOI18N
+        btnBuscar.setBorder(null);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 100, 40));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 50, 40));
 
+        lblError.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblError.setForeground(new java.awt.Color(255, 0, 0));
         lblError.setText("Mensaje de texto vacio a buscar");
         getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
-        txtAreaResultados.setColumns(20);
-        txtAreaResultados.setLineWrap(true);
-        txtAreaResultados.setRows(5);
-        jScrollPane1.setViewportView(txtAreaResultados);
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setForeground(new java.awt.Color(0, 102, 204));
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 770, 300));
-        getContentPane().add(lblFondoImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 460));
+        txtAreaLectura.setColumns(20);
+        txtAreaLectura.setRows(5);
+        txtAreaLectura.setBorder(null);
+        jScrollPane2.setViewportView(txtAreaLectura);
+
+        jTabbedPane1.addTab("Lectura", jScrollPane2);
+
+        txtAreaVideo.setColumns(20);
+        txtAreaVideo.setRows(5);
+        jScrollPane3.setViewportView(txtAreaVideo);
+
+        jTabbedPane1.addTab("Video", jScrollPane3);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 770, 300));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -149,10 +187,13 @@ public class GUI_principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblError;
-    private javax.swing.JLabel lblFondoImg;
-    private javax.swing.JTextArea txtAreaResultados;
+    private javax.swing.JTextArea txtAreaLectura;
+    private javax.swing.JTextArea txtAreaVideo;
     private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
 }

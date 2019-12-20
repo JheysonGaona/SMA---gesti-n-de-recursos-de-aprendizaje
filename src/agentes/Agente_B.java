@@ -36,7 +36,7 @@ public class Agente_B extends Agent {
                             }
                         }
                     } else {
-                        System.out.println("hay un eslse");
+                        System.out.println("hay un enlace");
                         consulta(mensaje);
                     }
                 }
