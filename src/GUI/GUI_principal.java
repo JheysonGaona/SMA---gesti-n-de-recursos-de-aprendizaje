@@ -4,6 +4,7 @@ import agentes.Agente_I;
 import clases.RecursosAprendizaje;
 import jade.gui.GuiEvent;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 
@@ -104,6 +105,11 @@ public class GUI_principal extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 70));
 
         txtBusqueda.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        txtBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBusquedaKeyReleased(evt);
+            }
+        });
         getContentPane().add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 660, 40));
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
@@ -151,6 +157,14 @@ public class GUI_principal extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         buscar();
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if(enter==KeyEvent.VK_ENTER){
+            buscar();
+        }   
+    }//GEN-LAST:event_txtBusquedaKeyReleased
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */

@@ -1,2 +1,4 @@
 inteligencia artificial,robots,evolucion,tecnologia,redes neuronales,IA
 inteligencia,pensamiento,imaginacion,razon,entendimiento
+seguridad,proteccion,deteccion
+seguridad de la informacion, respaldos
