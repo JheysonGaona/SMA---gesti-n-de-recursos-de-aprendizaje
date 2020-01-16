@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author jh3ys0n
@@ -30,18 +28,21 @@ public class Agente_RS extends Agent {
                 ACLMessage aclMessage = receive();
                 if (aclMessage != null) {
                     mensaje = aclMessage.getContent();
-                    System.out.println(getLocalName() + ": acaba de recibir el siguiente mensaje " + mensaje);
+                    System.out.println(getLocalName() + ": acaba de recibir el siguiente mensaje: " + mensaje);
                     try {
+                        System.out.println(getLocalName() + ": preparandose para realizar consulta hacia la base de datos");
                         lista = objRA.consultarRA(mensaje);
+                        System.out.println(getLocalName() + ": finalizo la tarea de realizar consulta hacia la base de datos");
                         aclMessage = new ACLMessage(ACLMessage.INFORM);
                         aclMessage.setContentObject((Serializable) lista);
                         aclMessage.addReceiver(new AID("Agente-I", AID.ISLOCALNAME));
                         send(aclMessage);
+                        System.out.println(getLocalName() + ": preparandose para enviar mensaje al Agente-I");
+                        System.out.println("===============================================================\n");
                     } catch (ClassNotFoundException | SQLException ex) {
                         System.err.println(ex.getMessage());
-
                     } catch (IOException ex) {
-                        Logger.getLogger(Agente_RS.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println(ex.getMessage());
                     }
                 }
             }

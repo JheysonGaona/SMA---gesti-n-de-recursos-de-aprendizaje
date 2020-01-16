@@ -98,5 +98,4 @@ public class RecursosAprendizaje implements Serializable{
         return String.format("%s\n%s\n%s\nTipo de recurso: %s\n\n", getTitulo_recurso(),
                 getEnlace_recurso(), getDetalle_recurso(), getCategoria());
     }
-    
 }

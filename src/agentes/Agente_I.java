@@ -17,8 +17,8 @@ import java.util.ArrayList;
 public class Agente_I extends GuiAgent {
 
     GUI_principal gui;
-    RecursosAprendizaje ra = new RecursosAprendizaje();
     String txtBusqueda;
+    RecursosAprendizaje ra = new RecursosAprendizaje();
 
     @Override
     public void setup() {
@@ -31,19 +31,11 @@ public class Agente_I extends GuiAgent {
                     try {
                         ArrayList<RecursosAprendizaje> lista
                                 = (ArrayList<RecursosAprendizaje>) aclMessage.getContentObject();
-                        ArrayList<RecursosAprendizaje> listaLectura = new ArrayList<>();
-                        ArrayList<RecursosAprendizaje> listaVideo = new ArrayList<>();
                         if (lista.size() > 0) {
-                            for (RecursosAprendizaje lista1 : lista) {
-                                if(lista1.getCategoria().equalsIgnoreCase("Lectura")){
-                                    listaLectura.add(lista1);
-                                }else{
-                                    listaVideo.add(lista1);
-                                }
-                            }
-                            gui.presentarResultados(listaLectura);
-                            gui.presentarResultadosVideo(listaVideo);
+                            System.out.println(getLocalName() + ": recibio datos del Agente-RS\n\n");
+                            gui.establecerLista(lista);
                         } else {
+                            System.out.println(getLocalName() + ": no recibio datos del Agente-RS\n\n");
                             String msm = ra.sinResultados("Sin Resultados.txt").replace("%s", txtBusqueda);
                             gui.sinResultados(msm);
                         }
@@ -63,10 +55,13 @@ public class Agente_I extends GuiAgent {
                 @Override
                 public void action() {
                     txtBusqueda = (String) ge.getParameter(0);
+                    System.out.println(getLocalName() + ": recojio el siguiente mensaje: " + txtBusqueda);
                     ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
                     aclMessage.setContent(txtBusqueda.toLowerCase());
                     aclMessage.addReceiver(new AID("Agente-B", AID.ISLOCALNAME));
                     send(aclMessage);
+                    System.out.println(getLocalName() + ": preparandose para enviar mensaje al Agente-B");
+                    System.out.println("===============================================================\n");
                 }
             });
         }

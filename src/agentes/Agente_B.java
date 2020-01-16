@@ -25,8 +25,9 @@ public class Agente_B extends Agent {
                 aclMessage = receive();
                 if (aclMessage != null) {
                     String mensaje = aclMessage.getContent();
-                    System.out.println(getLocalName() + ": acada de recibir el siguiente mensaje " + mensaje);
+                    System.out.println(getLocalName() + ": acada de recibir el siguiente mensaje: " + mensaje);
                     sinonimos = ra.buscarRA(mensaje);
+                    System.out.println(getLocalName() + ": preparandose para buscar palabra clave");
                     if (sinonimos != null) {
                         for (int i = 0; i < sinonimos.size(); i++) {
                             if (sinonimos.get(i).equals(mensaje)) {
@@ -36,7 +37,6 @@ public class Agente_B extends Agent {
                             }
                         }
                     } else {
-                        System.out.println("hay un enlace");
                         consulta(mensaje);
                     }
                 }
@@ -49,5 +49,7 @@ public class Agente_B extends Agent {
         aclMessage.setContent(mensaje);
         aclMessage.addReceiver(new AID("Agente-RS", AID.ISLOCALNAME));
         send(aclMessage);
+        System.out.println(getLocalName() + ": preparandose para enviar palabra clave al Agente-RS");
+        System.out.println("===============================================================\n");
     }
 }
