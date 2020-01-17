@@ -47,10 +47,10 @@ public class GUI_principal extends javax.swing.JFrame {
                 txtBusqueda.getBorder(),
                 BorderFactory.createEmptyBorder(0, 10, 0, 10)));
 
-        Font font = new Font("Verdana", Font.PLAIN, 12);
-        txtAreaTodos.setFont(font);
-        txtAreaLectura.setFont(font);
-        txtAreaVideos.setFont(font);
+//        Font font = new Font("Verdana", Font.PLAIN, 12);
+//        txtAreaTodos.setFont(font);
+//        txtAreaLectura.setFont(font);
+//        txtAreaVideos.setFont(font);
     }
 
     private void cargarImg(String link, JLabel etiqueta) {
@@ -117,16 +117,17 @@ public class GUI_principal extends javax.swing.JFrame {
         scrollPanelVideos = new javax.swing.JScrollPane();
         txtAreaVideos = new javax.swing.JTextArea();
         lblImgFondo = new javax.swing.JLabel();
+        lblImgFondo2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setBackground(new java.awt.Color(255, 255, 255));
         lblTitulo.setFont(new java.awt.Font("PlainBlack", 0, 36)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 102, 204));
+        lblTitulo.setForeground(new java.awt.Color(254, 34, 21));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Gestion de Recursos de Aprendizaje");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 70));
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 850, 50));
 
         txtBusqueda.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
         txtBusqueda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(2, 143, 247)));
@@ -159,7 +160,7 @@ public class GUI_principal extends javax.swing.JFrame {
         containerPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         containerPanel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
-        scrollPanelTodos.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPanelTodos.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         txtAreaTodos.setEditable(false);
         txtAreaTodos.setColumns(20);
@@ -170,7 +171,7 @@ public class GUI_principal extends javax.swing.JFrame {
 
         containerPanel.addTab("Todos", scrollPanelTodos);
 
-        scrollPanelLectura.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPanelLectura.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         txtAreaLectura.setEditable(false);
         txtAreaLectura.setColumns(20);
@@ -182,7 +183,7 @@ public class GUI_principal extends javax.swing.JFrame {
 
         containerPanel.addTab("Lectura", scrollPanelLectura);
 
-        scrollPanelVideos.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPanelVideos.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         txtAreaVideos.setEditable(false);
         txtAreaVideos.setColumns(20);
@@ -196,15 +197,26 @@ public class GUI_principal extends javax.swing.JFrame {
         getContentPane().add(containerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 770, 300));
 
         lblImgFondo.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lblImgFondoAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
         });
-        getContentPane().add(lblImgFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 470));
+        getContentPane().add(lblImgFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 850, 320));
+
+        lblImgFondo2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblImgFondo2AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        getContentPane().add(lblImgFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -223,6 +235,10 @@ public class GUI_principal extends javax.swing.JFrame {
     private void lblImgFondoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblImgFondoAncestorAdded
         cargarImg("/icon/fondo-blanco.png", lblImgFondo);
     }//GEN-LAST:event_lblImgFondoAncestorAdded
+
+    private void lblImgFondo2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblImgFondo2AncestorAdded
+        cargarImg("/icon/fondo2.jpg", lblImgFondo2);
+    }//GEN-LAST:event_lblImgFondo2AncestorAdded
 
     public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -261,6 +277,7 @@ public class GUI_principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane containerPanel;
     private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblImgFondo;
+    private javax.swing.JLabel lblImgFondo2;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JScrollPane scrollPanelLectura;
     private javax.swing.JScrollPane scrollPanelTodos;
